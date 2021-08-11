@@ -1,0 +1,28 @@
+<div class="notification"><%= flash[:notice] %></div>
+
+<!--ここか？-->
+<main>
+<h1 class="heading">Edintig Book</h1>
+<!-- form_with部分 -->
+<div id="error_explanation">
+
+<% if @book.errors.any? %>
+  <%=pluralize(@book.errors.count,"error" )%> prohibited this book from being saved.:
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+ <% end %>
+</div>
+
+
+ <%= form_with model:@book, local: true do |f| %>
+  <p>Title</p>
+  <%= f.text_field :title %>
+  <p>Body</p>
+  <%= f.text_area :body %>
+  <%= f.submit 'Update Book' %>
+ <% end %>
+
+<%= link_to "Show" , book_path(@book) %>
+<%= link_to "Back", books_path  %>
+</main>
